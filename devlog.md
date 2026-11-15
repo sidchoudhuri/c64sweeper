@@ -1,5 +1,31 @@
 # C64Sweeper devlog
 
+## v6 - 2026-11-15
+
+**Large board: big cells, scrolling and zoom**
+- The Large board (24x14) now plays in big cells too: the view shows 16x10 cells, the size of the Medium board, and scrolls by one cell when the cursor comes within 2 cells of its edge, so the cells around the cursor always show.
+- White arrows outside the frame show where there is more board: up, down, left, right.
+- Z zooms out to the whole board in small cells, and back in around the cursor. Both are playable; Large starts zoomed in. Z also works after a win or a loss, to look over the whole board.
+
+**The board view (machine code)**
+- New file `C64SWEEPERVIEW` ($9A00). The board is kept as a map at $9800, one byte per cell, 32 cells to a row. `SYS 39424` sets a cell and draws it if it is in view, `SYS 39427` draws the whole view (instant, so scrolling and zooming are instant), `SYS 39430` fills the map with covered tiles.
+- All drawing goes through it, on every board size. The edge tiles (no line towards the frame) are now chosen by the view: the last column and row of whatever is on the screen.
+- The game's cell numbering uses 32 cells to a row, so the machine code finds a cell's row and column with shifts; the screen address tables and the printed cell strings in BASIC are gone, which saves memory.
+- The win's colour wave changes the colour of the winning flag in the view's table and draws the flags again.
+
+**Instructions**
+- New line: "Z - Zoom in or out (Large)".
+
+**Fixes**
+- The board style starts as Outline: the loader resets it unless this version set it (settings byte 40713 = 6), so a value left in memory by an older build or another game is not used.
+- When zooming, the cursor moves to its cell in the new view before the board is drawn, so it is in the right cell when the drawing finishes.
+
+**Files**
+- `C64SWEEPERHELP` also holds the four arrow sprites ($35C0, blocks 215-218); version markers bumped so files left in memory by V5 are loaded again.
+
+**Version**
+- Title, instructions and credits say V6; disk ID 06.
+
 ## v5 - 2026-11-15
 
 **Multicolour characters**

@@ -11,6 +11,7 @@ https://m0nde.itch.io/c64sweeper
 - Loader with a menu, instructions, credits and SID setup (one or two SIDs, PAL or NTSC)
 - Multicolour character set: flags and bombs, double-size cells on Small and Medium
 - Four board styles: Classic, Blue, Outline and Dashed
+- The Large board scrolls in big cells; Z zooms out to see all of it
 - The mine you hit blows up, and the other mines follow
 - Music: "Mines" and "Mines Calm"
 - SID sound effects for moving, reveal, flagging, winning and losing
@@ -22,6 +23,7 @@ https://m0nde.itch.io/c64sweeper
 - V: volume (M / E with two SIDs)
 - T: tune
 - B: board style
+- Z: zoom in or out (Large board)
 - I: instructions
 - Q: back to the menu
 
