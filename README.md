@@ -7,19 +7,31 @@ https://m0nde.itch.io/c64sweeper
 ## Features
 
 - Three board sizes: Small (8x8, 10 mines), Medium (16x10, 30 mines), Large (24x14, 60 mines)
-- Classic minesweeper reveal/flood-fill/flag gameplay, with the top-left cell guaranteed safe for fairness
-- Cursor-key movement
+- Classic minesweeper reveal/flood-fill/flag gameplay; your first reveal is always safe
+- Loader with a menu, instructions, credits and SID setup (one or two SIDs, PAL or NTSC)
+- Custom character set and a pulsing cursor
 - SID sound effects for moving, reveal, flagging, winning and losing
 
 ## Controls
-- Arrow keys: move cursor
+- Cursor keys or W/A/S/D: move cursor
 - Space: reveal cell
-- Return: flag/unflag cell
-- Q: quit
+- Return or F: flag/unflag cell
+- V: volume
+- I: instructions
+- Q: back to the menu
 
 ## Playing
-Load c64sweeper.prg onto a disk or run it under emulation in VICE or on your C64 Ultimate or Ultimate 64 via SD card or over the network.
+Mount c64sweeper.d64 in VICE or on your C64 Ultimate or Ultimate 64, or write it to a disk.
 ```
-LOAD "C64SWEEPER",8,1
+LOAD "*",8
 RUN
 ```
+
+## Files
+
+- `c64sweeper.d64` - the disk
+- `src/` - the loader and game listings, and the assembly for the menu background and help screen
+- `prg/` - the programs on the disk
+- `font/` - the character set
+- `framework.md` - the memory map and techniques shared with Hex64 and C64Doku
+- `devlog.md`, `roadmap.md`
