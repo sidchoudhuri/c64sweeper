@@ -12,7 +12,7 @@ Shared by Hex64, C64Doku and C64Sweeper, so the games feel the same and can late
 | $3400 | Copy routine: `POKE 780,from page:POKE 782,to page:SYS 13312` copies 4 pages |
 | $3800-$3FFF | Character set (`...CHARS`) |
 | $4001-$8FFF | Game (and demo), BASIC. The loader sets `POKE 44,64:POKE 16384,0` before `LOAD`; the game starts with `POKE 45,PEEK(174):POKE 46,PEEK(175):POKE 55,0:POKE 56,144:CLR` |
-| $9000-$9EFF | Music player and tunes (`...MUSIC`): $9000 start, $9003 stop, $9006 two-SID flag, $9007 song, $9009 init, $900C play, $900F volume. C64Sweeper V3 has no music yet, so nothing is loaded here |
+| $9000-$9EFF | Music player and tunes (`...MUSIC`): $9000 start, $9003 stop, $9006 two-SID flag, $9007 song, $9009 init, $900C play, $900F volume. $9008 is free in the player; C64Sweeper puts 77 there to mark its own music file |
 | $9F00 | Settings shared by the loader and the game (below) |
 | $C000-$C7FF | Menu background screen ($C000) and colours ($C400) (`...BG`) |
 | $C800 | Background helper, `SYS 51200` |
@@ -47,4 +47,4 @@ Shared by Hex64, C64Doku and C64Sweeper, so the games feel the same and can late
 - Sprites are switched off while the instructions show and back on after.
 - The instructions screen must suit one or two SIDs (e.g. "V - Volume (M / E with two SIDs)").
 - The help file is rebuilt whenever the instructions text changes.
-- The loader's "already loaded?" checks must look at bytes that differ between games. C64Sweeper's do: characters `PEEK(14920)=254`, background `PEEK(51200)=160` (its helper starts with LDY, the others with LDX), help `PEEK(11268)=19` (its help text starts in column 1, so 11265 is not the 54 C64Doku looks for). Hex64 and C64Doku still check bytes that pass for each other's music and background files; that needs fixing for one collection disk.
+- The loader's "already loaded?" checks must look at bytes that differ between games. C64Sweeper's do: music `PEEK(36872)=77`, characters `PEEK(14920)=254`, background `PEEK(51200)=160` (its helper starts with LDY, the others with LDX), help `PEEK(11268)=19` (its help text starts in column 1, so 11265 is not the 54 C64Doku looks for). Hex64 and C64Doku still check bytes that pass for each other's music and background files; that needs fixing for one collection disk. Until then C64Sweeper's Quit clears 36864 and 36872, so the next game loads its own music.

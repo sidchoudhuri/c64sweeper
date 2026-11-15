@@ -10,13 +10,15 @@ https://m0nde.itch.io/c64sweeper
 - Classic minesweeper reveal/flood-fill/flag gameplay; your first reveal is always safe
 - Loader with a menu, instructions, credits and SID setup (one or two SIDs, PAL or NTSC)
 - Custom character set and a pulsing cursor
+- Music: "Mines" and "Mines Calm"
 - SID sound effects for moving, reveal, flagging, winning and losing
 
 ## Controls
 - Cursor keys or W/A/S/D: move cursor
 - Space: reveal cell
 - Return or F: flag/unflag cell
-- V: volume
+- V: volume (M / E with two SIDs)
+- T: tune
 - I: instructions
 - Q: back to the menu
 
@@ -30,8 +32,9 @@ RUN
 ## Files
 
 - `c64sweeper.d64` - the disk
-- `src/` - the loader and game listings, and the assembly for the menu background and help screen
+- `src/` - the loader and game listings, and the assembly for the music, menu background and help screen
 - `prg/` - the programs on the disk
 - `font/` - the character set
+- `sid/` - the music as .sid files for PAL and NTSC
 - `framework.md` - the memory map and techniques shared with Hex64 and C64Doku
 - `devlog.md`, `roadmap.md`
