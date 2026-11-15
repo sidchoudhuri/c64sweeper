@@ -1,5 +1,53 @@
 # C64Sweeper devlog
 
+## v5 - 2026-11-15
+
+**Multicolour characters**
+- The game and the loader run in multicolour character mode. Mid grey and light grey are shared by every cell; each character has one colour of its own (the red of a flag, the yellow of a spark).
+- Raised tiles, a flag on a pole and a bomb with a fuse and a spark instead of the one-colour tile, flag and mine. The small flag and both bombs were finished by m0nde.
+- Small and Medium have double-size cells (2x2 characters): big tiles, big numbers, big flags and bombs. Large keeps single-size cells so it fits the screen.
+- Text only uses the first 8 colours now (plain characters cannot use the others in this mode).
+- Open empty cells show a small blue dot.
+
+**Board styles**
+- Four styles, which B cycles on the Choose a board screen and during a game: **Classic** (raised grey tiles), **Blue** (solid blue tiles), **Outline** (one solid blue line in the gap between cells) and **Dashed** (the same lines, dashed). The choice is kept (settings byte 40712).
+- Outline is the default, and the loader's menu always uses it.
+- In Outline and Dashed a covered cell has a grey dot in the middle, like C64Doku's empty cells, and an open empty cell is plain black. The lines stop short of the frame, so the black strip between the board and the frame is the same on all four sides: the cells in the last column and the last row (tile, flag, wrong flag) have edge versions without the line towards the frame, and the frame sits one step further out on the right and at the bottom.
+- A style changes the board, and what stands on it adapts: a flag sits on a grey tile in Classic, a blue tile in Blue, and on black between the lines in Outline and Dashed, always with the red pennant. The flag pole reaches the top of the pennant.
+- How: a character has black, two shared colours and one of its own. Mid grey is always shared; the second shared colour is light grey in Classic and blue in the others. The bomb looks the same in every style: mid grey body and fuse, a black highlight, a yellow spark.
+- Switching is instant on any board: a machine-code routine (`POKE 780,style:SYS 51264`, next to the menu background in `C64SWEEPERBG`) copies the 51 characters that differ between the styles into the character set, and one POKE sets the second shared colour, so every cell on the screen changes at once.
+- The numbers use the same colours in every style, from the palette of the other games: 1 white, 2 yellow, 3 red, 4 green, 5 purple, 6 cyan, 7 blue, 8 white.
+- The numbers have one shape at both sizes: the big ones are the small ones with every pixel doubled, so they are sharp. The 4 is the C64's own 4 from the character ROM (the old one had too small a gap and read as a blob).
+
+**Choose a board**
+- The menu's minefield is behind it, animated the same way (cells open, close and get flags; now and then a bomb goes off), in the chosen style. B changes the style of the board and the background at once.
+- The mine counts are left out so the text fits the panel; the game's header shows them.
+
+**The blast**
+- The mine you reveal goes off: a multicolour sprite at double size (6 frames: flash, fireball, smoke), the screen shakes, the border flashes, and a crater is left.
+- Sound: a falling roar (noise), a low thump (triangle) and crackle (noise) on three voices.
+- Music: with one SID it stops for the blast and comes back as "Mines". With two SIDs it changes to "Mines" and plays on. The next game goes back to the tune you chose with T.
+- The mines next to the blast go off next (flash and sparks), then the tile over every other mine goes with a tick, one by one, and the bombs show. Flagged mines stay flags; wrong flags are crossed out. Any key hurries it up.
+- Measured in VICE: about 1 second on Small, 2.6 on Medium, 4.2 on Large.
+
+**Other animation and sound**
+- A tile presses in before it opens. The click is higher the bigger the number under it.
+- An area that opens up ripples: every fourth cell blips, rising.
+- When you win, a flag goes up on every mine with rising notes, then a colour wave runs over the flags (white, yellow, green) before the fanfare. These flags have no tile behind them, so the green stands out.
+- The menu background uses the new tiles; now and then a bomb shows and goes off.
+
+**Speed and memory**
+- Big cells are printed (a string of colour and 4 characters per kind of cell), which is much quicker than 8 POKEs; rows of tiles are printed as one string.
+- The busiest routines sit at the top of the game and the busiest variables are made first, because BASIC looks for lines and variables from the start. Loops avoid GOTO where they can.
+- The mine flags live in the counts array (+16) and big cells reuse the address array for their row, to fit in memory.
+- The game on the disk is stored without its comments (the REM lines stay as bare REM so the line numbers match). `src/c64sweeper-game.bas` is the same program with the comments.
+
+**Files**
+- `C64SWEEPERHELP` also holds the blast sprite ($3440) and a version marker ($3420). `C64SWEEPERBG` also holds the board style routine and the four styles ($C840) and a version marker ($C83F). The character set has a version marker in character 251. The loader checks these markers, so files left in memory by an older version are loaded again.
+
+**Version**
+- Title, instructions and credits say V5; disk ID 05.
+
 ## v4 - 2026-11-15
 
 **Music**

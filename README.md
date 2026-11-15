@@ -9,7 +9,9 @@ https://m0nde.itch.io/c64sweeper
 - Three board sizes: Small (8x8, 10 mines), Medium (16x10, 30 mines), Large (24x14, 60 mines)
 - Classic minesweeper reveal/flood-fill/flag gameplay; your first reveal is always safe
 - Loader with a menu, instructions, credits and SID setup (one or two SIDs, PAL or NTSC)
-- Custom character set and a pulsing cursor
+- Multicolour character set: flags and bombs, double-size cells on Small and Medium
+- Four board styles: Classic, Blue, Outline and Dashed
+- The mine you hit blows up, and the other mines follow
 - Music: "Mines" and "Mines Calm"
 - SID sound effects for moving, reveal, flagging, winning and losing
 
@@ -19,6 +21,7 @@ https://m0nde.itch.io/c64sweeper
 - Return or F: flag/unflag cell
 - V: volume (M / E with two SIDs)
 - T: tune
+- B: board style
 - I: instructions
 - Q: back to the menu
 
