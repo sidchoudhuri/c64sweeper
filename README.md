@@ -24,7 +24,7 @@ https://m0nde.itch.io/c64sweeper
 - T: tune
 - B: board style
 - Z: zoom in or out (Large board)
-- I: instructions
+- I or H: instructions
 - Q: back to the menu
 
 ## Playing

@@ -13,8 +13,10 @@
 - The game's cell numbering uses 32 cells to a row, so the machine code finds a cell's row and column with shifts; the screen address tables and the printed cell strings in BASIC are gone, which saves memory.
 - The win's colour wave changes the colour of the winning flag in the view's table and draws the flags again.
 
-**Instructions**
-- New line: "Z - Zoom in or out (Large)".
+**Keys and header**
+- The key line under the title is now "Space Reveal Flag Zoom Help Quit" on the Large board and "Space Reveal Flag Help Quit" on Small and Medium (no zoom there), with the keys in cyan.
+- H opens the instructions, as I does. The loader's menu is unchanged.
+- The instructions have "Z - Zoom in/out toggle (Large)" and "I or H - These instructions".
 
 **Fixes**
 - The board style starts as Outline: the loader resets it unless this version set it (settings byte 40713 = 6), so a value left in memory by an older build or another game is not used.
