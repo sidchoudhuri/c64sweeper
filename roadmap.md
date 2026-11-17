@@ -23,9 +23,9 @@ Branches are named `v#-short-description`, for example `v3-framework`.
 | DONE | v5: tile press, click pitch by number, flood ripple, flags and colour wave when you win, bombs in the menu background |
 | DONE | v6: Large board in big cells, 16x10 view that scrolls, arrows where there is more board; Z zooms out to the whole board |
 | DONE | v6: board view in machine code (`C64SWEEPERVIEW`): map of the board, instant redraw |
+| DONE | v7: self-playing demo (`C64SWEEPERDEMO`, D on the menu): same games every time, all 3 boards, a blast on Medium, zoom on Large, +/- speed, Q to the menu |
 | TO DO | Chain explosion: after you hit a bomb, every other bomb goes off one after another (flash, sparks, sound); any key stops it and shows the rest at once |
 | TO DO | Large, zoomed in: the chain starts in the zoomed-in view, and after 5 bombs it zooms out to the whole board and carries on |
-| TO DO | Self-playing demo |
 | TO DO | Listen to "Mines" on real hardware and tune it (it was composed and rendered, not heard) |
 | TO DO | Test on real hardware, including two SIDs and NTSC (only tested in VICE so far, one SID; the music and the blast sounds were not heard, only checked as code and a .sid render) |
 | TO DO | Update the itch.io page (the .d64 instead of the single .prg, new screenshots) and the GIF in the README |
