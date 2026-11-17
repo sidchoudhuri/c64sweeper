@@ -1,5 +1,23 @@
 # C64Sweeper devlog
 
+## v7 - 2026-11-16
+
+**Self-playing demo**
+- New program `C64SWEEPERDEMO`, D on the loader menu (never started automatically). It plays the same 12 games every time (fixed seed), so a GIF can be recorded from it.
+- One loop: Small, Medium, Large, then again; the board style moves on each board (Classic, Blue, Outline, Dashed, ...).
+- It plays by the two basic rules: a number whose flags already make it has safe cells around it; a number whose flags and covered cells together make it has mines in all of them. When nothing is certain it quietly picks a safe cell it knows, so it never guesses wrong.
+- On Medium, half way through, it reveals a mine, so the blast and the music change show.
+- On Large it starts zoomed in and scrolls, zooms out a third of the way through and back in 4 seconds later.
+- The cursor moves one step at a time, as a player's would. + and - set the speed (1-5, starting at 3, shown on the key bar), the volume keys and T work as in the game, and Q goes back to the menu at any time.
+- It thinks only about the open numbers that still have covered cells around them, so it doesn't pause long, even on Large.
+- The demo never changes your saved board style.
+
+**Loader**
+- New menu line D - Demo, between Credits and SID setup.
+
+**Version**
+- Title, instructions and credits say V7; disk ID 07.
+
 ## v6 - 2026-11-15
 
 **Large board: big cells, scrolling and zoom**
